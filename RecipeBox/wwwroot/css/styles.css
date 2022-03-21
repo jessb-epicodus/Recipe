@@ -1,3 +1,13 @@
 body{
   background: thistle;
 }
+
+#footer {
+	position:fixed;
+  text-align: center;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	color:#CCC;
+	padding:8px;
+}

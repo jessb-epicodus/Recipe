@@ -15,6 +15,18 @@
   @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
 
+  @Html.LabelFor(model => model.Rating)
+  @Html.EditorFor(model => model.Rating)
+
+  @Html.LabelFor(model => model.Instructions)
+  @Html.EditorFor(model => model.Instructions)
+
+  @Html.LabelFor(model => model.CookTime)
+  @Html.EditorFor(model => model.CookTime)
+
+  @Html.LabelFor(model => model.Yield)
+  @Html.EditorFor(model => model.Yield)
+
   @Html.Label("Select category")
   @Html.DropDownList("CategoryId")
 

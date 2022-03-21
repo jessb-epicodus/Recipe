@@ -2,6 +2,51 @@
   Layout = "_Layout";
 }
 
-<h1>Welcome to the Recipe Box!</h1>
-<p>@Html.ActionLink("See all recipes", "Index", "Recipes")</p> <p>@Html.ActionLink("See all categories", "Index", "Categories")</p>
+@using RecipeBox.Models;
+@model RecipeBox.Models.CategoryRecipe;
+
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Recipe Box</h1>
+    <hr>
+    <p class="col-md-8 fs-4">Manage your Categories & Recipes</p>
+  </div>
+</div>
+<div class="row align-items-md-stretch">
+  <div class="col-md-6">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <h2>Recipes</h2>
+      <p>
+        @if(@ViewBag.Recipes.Count == 0) {
+          <em>No recipes have been entered</em>
+        } @foreach(Recipe recipe in ViewBag.Recipes) {
+          @Html.ActionLink($"{recipe.Name}", "Details", "Recipes", new {id= recipe.RecipeId})<br>
+        }
+      </p>
+      <div class="row">
+        <form method="get" action="/Recipes/Create">
+          <button class="btn btn-outline-light" type="submit">Add Recipe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <h2>Categories</h2>
+      <p>
+        @if(@ViewBag.Categories.Count == 0) {
+          <em>No categories have been entered</em>
+        } @foreach(Category category in ViewBag.Categories) {
+          @Html.ActionLink($"{category.Name}", "Details", "Categories", new {id= category.CategoryId})<br>
+        }
+      </p>
+      <div class="row">
+        <form method="get" action="/Categories/Create">
+          <button class="btn btn-outline-light" type="submit">Add Category</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <p>@Html.ActionLink("Create an account", "Index", "Account")</p>

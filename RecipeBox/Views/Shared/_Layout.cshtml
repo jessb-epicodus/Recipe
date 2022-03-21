@@ -8,9 +8,11 @@
     <title>@ViewBag.PageTitle</title>
   </head>
   <body>
+    <h1><br></h1>
     <div class=container>
       @RenderBody()
     </div>
-    <div id="header"><p>@Html.ActionLink("Home", "Index", "Home")  |  @Html.ActionLink("Recipes", "Index", "Recipes")  |    @Html.ActionLink("Categories", "Index", "Categories")</p></div>
+    <h1><br></h1>
+    <div id="footer"><p>@Html.ActionLink("Home", "Index", "Home")  |  @Html.ActionLink("Recipes", "Index", "Recipes")  |    @Html.ActionLink("Categories", "Index", "Categories")</p></div>
   </body>
 </html>

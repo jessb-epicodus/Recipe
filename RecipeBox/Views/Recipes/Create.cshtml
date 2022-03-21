@@ -5,15 +5,27 @@
 @model RecipeBox.Models.Recipe
 
 <h4>Add a new Recipe</h4>
-
+<hr>
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-
+  @Html.TextBoxFor(model => model.Name, new {@class = "form-control", placeholder = "Recipe Name", required="required"})
+  <br>
+  @Html.LabelFor(model => model.Instructions)
+  @Html.TextBoxFor(model => model.Instructions, new {@class = "form-control", placeholder = "Instructions", required="required"})
+  <br>
+  @Html.LabelFor(model => model.CookTime)
+  @Html.TextBoxFor(model => model.CookTime, new {@type="number", @class = "form-control", placeholder = "##", required="required"})
+  <br>
+  @Html.LabelFor(model => model.Yield)
+  @Html.TextBoxFor(model => model.Yield, new {@type="number", @class = "form-control", placeholder = "Yield", required="required"})
+  <br>
+  @Html.LabelFor(model => model.Rating)
+  @Html.TextBoxFor(model => model.Rating, new {@type="number", @class = "form-control", placeholder = "Rating", required="required"})
+  <br>
   @Html.Label("Select category")
   @Html.DropDownList("CategoryId")
-
+  <br>
   <input type="submit" value="Add new recipe" class="btn btn-default" />
 }
 

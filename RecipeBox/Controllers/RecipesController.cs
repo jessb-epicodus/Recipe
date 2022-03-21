@@ -16,7 +16,6 @@ namespace RecipeBox.Controllers
   {
     private readonly RecipeBoxContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
-
     public RecipesController(UserManager<ApplicationUser> userManager, RecipeBoxContext db)
     {
       _userManager = userManager;
@@ -27,7 +26,7 @@ namespace RecipeBox.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).OrderByDescending(userRecipes => userRecipes.Rating).ToList();
       return View(userRecipes);
     }
 
@@ -47,7 +46,7 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       if (CategoryId != 0)
       {
-          _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
+        _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -56,7 +55,7 @@ namespace RecipeBox.Controllers
     public ActionResult Details(int id)
     {
       var thisRecipe = _db.Recipes
-          .Include(recipe => recipe.JoinEntities)
+          .Include(recipe => recipe.JoinCategories)
           .ThenInclude(join => join.Category)
           .FirstOrDefault(recipe => recipe.RecipeId == id);
       return View(thisRecipe);
