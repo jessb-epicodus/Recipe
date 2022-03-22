@@ -4,7 +4,7 @@ namespace RecipeBox.Models {
   public class Recipe {
     public Recipe() {
       this.JoinCategories = new HashSet<CategoryRecipe>();
-      this.JoinIngredients = new HashSet<IngredientRecipe>();
+      this.JoinIngredients = new HashSet<RecipeIngredient>();
     }
     public int RecipeId { get; set; }
     public string Name { get; set; }
@@ -14,6 +14,6 @@ namespace RecipeBox.Models {
     public int Yield { get; set; }
     public virtual ApplicationUser User { get; set; }
     public virtual ICollection<CategoryRecipe> JoinCategories { get; set; }
-    public virtual ICollection<IngredientRecipe> JoinIngredients { get; set; }
+    public virtual ICollection<RecipeIngredient> JoinIngredients { get; set; }
   }
 }
