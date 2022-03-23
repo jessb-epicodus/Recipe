@@ -18,10 +18,14 @@ else
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Recipe.Name</li>
+    @* <li>@join.Recipe.Name</li> *@
+    <li>@Html.ActionLink(@join.Recipe.Name, "Details",  "Recipes",  new { id = @join.Recipe.RecipeId })
+</li>
   }
   </ul>
 }
+
+
 
 <p>@Html.ActionLink("Back to Ingredients", "Index")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
