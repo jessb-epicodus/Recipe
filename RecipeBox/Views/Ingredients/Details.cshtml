@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Ingredient;
+
+<h2>Recpies Ingrediant Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <em>This ingredient does not contain any recipes</em>
+}
+else
+{
+  <h4>Recipes the ingredient contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Recipe.Name</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to Ingredients", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

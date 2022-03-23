@@ -12,22 +12,30 @@
   @Html.TextBoxFor(model => model.Name, new {@class = "form-control", placeholder = "Recipe Name", required="required"})
   <br>
   <p>Ingredients</p>
-
-        <!-- @Html.Label("Rewrite amount") 
-        @Html.TextBox("amount") -->
-
-
   @Html.Hidden("RecipeId")
-  @Html.TextBox("Ingredient1", new {@class = "form-control", placeholder = "Ingredients...", required="required"})
+  @Html.TextBox("Ingredient1", null, new {@class = "form-control", placeholder = "Ingredients...", required="required"})
   @Html.Hidden("RecipeId")
-  @Html.TextBox("Ingredient2", new {@class = "form-control", required="required"})
+  @Html.TextBox("Ingredient2", null, new {@class = "form-control", required="required"})
   @Html.Hidden("RecipeId")
-  @Html.TextBox("Ingredient3", new {@class = "form-control"})
+  @Html.TextBox("Ingredient3", null, new {@class = "form-control"})
+  @Html.Hidden("RecipeId")
+  @Html.TextBox("Ingredient4", null, new {@class = "form-control"})
+  @Html.Hidden("RecipeId")
+  @Html.TextBox("Ingredient5", null, new {@class = "form-control"})
+  @Html.Hidden("RecipeId")
+  @Html.TextBox("Ingredient6", null, new {@class = "form-control"})
+  @Html.Hidden("RecipeId")
+  @Html.TextBox("Ingredient7", null, new {@class = "form-control"})
+  @Html.Hidden("RecipeId")
+  @Html.TextBox("Ingredient8", null, new {@class = "form-control"})
+  @Html.Hidden("RecipeId")
+  @Html.TextBox("Ingredient9", null, new {@class = "form-control"})
+
   <br>
   @Html.LabelFor(model => model.Instructions)
   @Html.TextAreaFor(model => model.Instructions, new {@class = "form-control", placeholder = "Instructions", required="required"})
   <br>
-  @Html.LabelFor(model => model.CookTime)
+  <p>Total Prep & Cook Time (min.)</p>
   @Html.TextBoxFor(model => model.CookTime, new {@type="number", @class = "form-control", placeholder = "##", required="required"})
   <br>
   @Html.LabelFor(model => model.Yield)
@@ -39,7 +47,7 @@
   @Html.Label("Select category")
   @Html.DropDownList("CategoryId")
   <br>
-  <input type="submit" value="Add new recipe" class="btn btn-default" />
+  <input type="submit" value="Add new recipe" class="btn btn-dark" />
 }
 
 <p>@Html.ActionLink("Show all recipes", "Index")</p>

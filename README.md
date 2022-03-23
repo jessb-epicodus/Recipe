@@ -39,6 +39,7 @@ This is a website where users can BLAH.
 * Install Dependeciey: Enter `dotnet restore` in your terminal
 * Try Out This Web App: Enter `dotnet run` in the command line and navigte navigate to _http://localhost:5000/_ in your browser
 * _This is not yet published_
+
 ## Known Bugs
 
 * No known issues
