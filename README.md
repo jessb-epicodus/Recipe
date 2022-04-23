@@ -15,7 +15,7 @@
 
 ## Description
 
-This is a website where users can BLAH.
+This is a web app using user authentication and a many-to-many relationships.
 
 ## Setup/Installation Requirements
 

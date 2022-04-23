@@ -139,17 +139,76 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Delete(int id)
+    public ActionResult Delete(int id, int ing1Id, int ing2Id, int ing3Id, int ing4Id, int ing5Id, int ing6Id, int ing7Id, int ing8Id, int ing9Id, int recIng1Id, int recIng2Id, int recIng3Id, int recIng4Id, int recIng5Id, int recIng6Id, int recIng7Id, int recIng8Id, int recIng9Id)
     {
-      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      var thisRecipe = _db.Recipes
+        .Include(recipe => recipe.JoinIngredients)
+        .ThenInclude(join => join.Ingredient)
+        .FirstOrDefault(recipe => recipe.RecipeId == id);
+      var ing1 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing1Id);
+      var ing2 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing2Id);
+      var ing3 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing3Id);
+      var ing4 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing4Id);
+      var ing5 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing5Id);
+      var ing6 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing6Id);
+      var ing7 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing7Id);
+      var ing8 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing8Id);
+      var ing9 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing9Id);
+      var recIng1 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng1Id);
+      var recIng2 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng2Id);
+      var recIng3 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng3Id);
+      var recIng4 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng4Id);
+      var recIng5 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng5Id);
+      var recIng6 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng6Id);
+      var recIng7 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng7Id);
+      var recIng8 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng8Id);
+      var recIng9 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng9Id);
       return View(thisRecipe);
     }
 
     [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+    public ActionResult DeleteConfirmed(int id, int ing1Id, int ing2Id, int ing3Id, int ing4Id, int ing5Id, int ing6Id, int ing7Id, int ing8Id, int ing9Id, int recIng1Id, int recIng2Id, int recIng3Id, int recIng4Id, int recIng5Id, int recIng6Id, int recIng7Id, int recIng8Id, int recIng9Id)
     {
       var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
       _db.Recipes.Remove(thisRecipe);
+      _db.SaveChanges();
+      var ing1 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing1Id);
+      var ing2 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing2Id);
+      var ing3 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing3Id);
+      var ing4 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing4Id);
+      var ing5 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing5Id);
+      var ing6 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing6Id);
+      var ing7 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing7Id);
+      var ing8 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing8Id);
+      var ing9 = _db.Ingredients.FirstOrDefault(ingredient => ingredient.IngredientId == ing9Id);
+      _db.Ingredients.Remove(ing1);
+      _db.Ingredients.Remove(ing2);
+      _db.Ingredients.Remove(ing3);
+      _db.Ingredients.Remove(ing4);
+      _db.Ingredients.Remove(ing5);
+      _db.Ingredients.Remove(ing6);
+      _db.Ingredients.Remove(ing7);
+      _db.Ingredients.Remove(ing8);
+      _db.Ingredients.Remove(ing9);
+      _db.SaveChanges();
+      var recIng1 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng1Id);
+      var recIng2 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng2Id);
+      var recIng3 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng3Id);
+      var recIng4 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng4Id);
+      var recIng5 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng5Id);
+      var recIng6 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng6Id);
+      var recIng7 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng7Id);
+      var recIng8 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng8Id);
+      var recIng9 = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.RecipeIngredientId == recIng9Id);
+      _db.RecipeIngredient.Remove(recIng1);
+      _db.RecipeIngredient.Remove(recIng2);
+      _db.RecipeIngredient.Remove(recIng3);
+      _db.RecipeIngredient.Remove(recIng4);
+      _db.RecipeIngredient.Remove(recIng5);
+      _db.RecipeIngredient.Remove(recIng6);
+      _db.RecipeIngredient.Remove(recIng7);
+      _db.RecipeIngredient.Remove(recIng8);
+      _db.RecipeIngredient.Remove(recIng9);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

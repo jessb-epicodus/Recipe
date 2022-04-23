@@ -9,8 +9,8 @@ using RecipeBox.Models;
 namespace RecipeBox.Migrations
 {
     [DbContext(typeof(RecipeBoxContext))]
-    [Migration("20220322160922_addIngredients")]
-    partial class addIngredients
+    [Migration("20220325172859_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -260,12 +260,6 @@ namespace RecipeBox.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Group")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -276,28 +270,7 @@ namespace RecipeBox.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Ingredient");
-                });
-
-            modelBuilder.Entity("RecipeBox.Models.IngredientRecipe", b =>
-                {
-                    b.Property<int>("IngredientRecipeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("IngredientRecipeId");
-
-                    b.HasIndex("IngredientId");
-
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("IngredientRecipe");
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
@@ -329,6 +302,30 @@ namespace RecipeBox.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.RecipeIngredient", b =>
+                {
+                    b.Property<int>("RecipeIngredientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Amount")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RecipeIngredientId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeIngredient");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -419,7 +416,16 @@ namespace RecipeBox.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("RecipeBox.Models.IngredientRecipe", b =>
+            modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
+                {
+                    b.HasOne("RecipeBox.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.RecipeIngredient", b =>
                 {
                     b.HasOne("RecipeBox.Models.Ingredient", "Ingredient")
                         .WithMany("JoinEntities")
@@ -436,15 +442,6 @@ namespace RecipeBox.Migrations
                     b.Navigation("Ingredient");
 
                     b.Navigation("Recipe");
-                });
-
-            modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
-                {
-                    b.HasOne("RecipeBox.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("RecipeBox.Models.Category", b =>

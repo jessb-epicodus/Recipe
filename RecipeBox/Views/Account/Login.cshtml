@@ -1,10 +1,10 @@
 @{Layout = "_Layout";}
 
-@using RecipeBox.ViewModels
-@model LoginViewModel
+@using RecipeBox.ViewModels;
+@model LoginViewModel;
 
 <h2>Log in with your account</h2>
-
+<hr />
 @using (Html.BeginForm()){
   @Html.LabelFor(m => m.Email)
   @Html.TextBoxFor(m => m.Email, new {@class = "form-control", required="required"})
